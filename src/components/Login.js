@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { ROUTES } from "../common/constants";
 import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/authSlice";
 
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -25,7 +28,7 @@ export default function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem("token", data.accessToken);
+        dispatch(login(data.accessToken));
         navigate(ROUTES.MAIN);
       } else {
         setError(data.message || "Login failed.");

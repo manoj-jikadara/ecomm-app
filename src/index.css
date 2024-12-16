@@ -20,3 +20,11 @@ code {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  padding: 16px;
+}
